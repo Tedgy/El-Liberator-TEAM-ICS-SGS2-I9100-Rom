@@ -1,0 +1,22 @@
+#!/system/bin/sh
+#
+# WanamLite_Tweaks by Wanam
+
+# Fix Gtalk
+sqlite3 /data/data/com.google.android.gsf/databases/gservices.db 'update main set value="false" where name="gtalk_vc_wifi_only"'
+
+# Screen fix
+if [ -e /sys/class/mdnie/mdnie/scenario ]; then
+        echo "4" > /sys/class/mdnie/mdnie/scenario
+fi
+
+# Ondemand tweaks
+if [ -e /sys/devices/system/cpu/cpufreq/ondemand/up_threshold ]; then
+        echo "75" > /sys/devices/system/cpu/cpufreq/ondemand/up_threshold
+fi
+if [ -e /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate ]; then
+        echo "120000" > /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate
+fi
+if [ -e /sys/devices/system/cpu/cpufreq/ondemand/down_differential ]; then
+        echo "10" > /sys/devices/system/cpu/cpufreq/ondemand/down_differential
+fi
